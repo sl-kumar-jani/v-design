@@ -198,7 +198,7 @@ export function Contact() {
                   Office Hours
                 </h4>
                 <div className="space-y-2 font-['Playfair_Display'] text-gray-700">
-                  <p>Monday - Friday: 10:00 am to 6:00 PM</p>
+                  <p>Monday - Friday: 10:00 AM to 6:00 PM</p>
                   <p>Saturday: 10:00 AM - 4:00 PM</p>
                   <p>Sunday: By Appointment</p>
                 </div>
