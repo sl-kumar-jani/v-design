@@ -92,7 +92,7 @@ export function SEOHead({
       <meta name="business:contact_data:country_name" content="India" />
       <meta
         name="business:contact_data:phone_number"
-        content="+91-9764447006"
+        content="+91-97644 47006"
       />
       <meta
         name="business:contact_data:email"
@@ -132,7 +132,7 @@ export function SEOHead({
             url: "https://www.vdesignbyvirali.in",
             logo: "https://www.vdesignbyvirali.in/images/v-design-logo.png",
             image: "https://www.vdesignbyvirali.in/images/v-design-logo.png",
-            telephone: "+91-9764447006",
+            telephone: "+91-97644 47006",
             email: "virali.vdesign@gmail.com",
             address: {
               "@type": "PostalAddress",

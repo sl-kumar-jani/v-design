@@ -162,7 +162,7 @@ export default function RootLayout({
               url: "https://www.vdesignbyvirali.in",
               logo: "https://www.vdesignbyvirali.in/images/v-design-logo.png",
               image: "https://www.vdesignbyvirali.in/images/v-design-logo.png",
-              telephone: "+91-9764447006",
+              telephone: "+91-97644 47006",
               email: "virali.vdesign@gmail.com",
               address: {
                 "@type": "PostalAddress",

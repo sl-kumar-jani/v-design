@@ -49,9 +49,11 @@ class InstagramService {
 
     try {
       // First, try to get media with engagement data (Graph API)
+      // Fetch more media initially to ensure we get enough video content
       const fields =
         "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp,like_count,comments_count";
-      const url = `${this.baseUrl}/me/media?fields=${fields}&limit=${limit}&access_token=${this.accessToken}`;
+      const fetchLimit = Math.max(limit * 3, 25); // Fetch more to ensure we get enough videos
+      const url = `${this.baseUrl}/me/media?fields=${fields}&limit=${fetchLimit}&access_token=${this.accessToken}`;
 
       const response = await fetch(url);
 
@@ -63,7 +65,14 @@ class InstagramService {
 
       const data: InstagramApiResponse = await response.json();
 
-      // Filter only video content (reels)
+      // Log media types for debugging
+
+      const mediaTypes = data.data.reduce((acc, media) => {
+        acc[media.media_type] = (acc[media.media_type] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+
+      // Filter only video content (reels) - exclude images and carousel albums
       const videoMedia = data.data.filter(
         (media) => media.media_type === "VIDEO"
       );
@@ -81,7 +90,10 @@ class InstagramService {
               this.extractDescription(media.caption) ||
               "Interior design inspiration",
             videoUrl: media.media_url,
-            thumbnail: media.thumbnail_url || media.media_url,
+            thumbnail:
+              media.thumbnail_url ||
+              media.media_url ||
+              "/placeholder.svg?height=600&width=400",
             views: this.generateViews(),
             likes: engagementData.likes || this.generateLikes(),
             comments: engagementData.comments || "",
@@ -91,7 +103,13 @@ class InstagramService {
         })
       );
 
-      return reels;
+      // Sort reels by timestamp (latest first) and return the requested limit
+      const sortedReels = reels.sort(
+        (a, b) =>
+          new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+      );
+
+      return sortedReels.slice(0, limit);
     } catch (error) {
       console.error("Error fetching Instagram reels:", error);
       throw error;
@@ -149,13 +167,14 @@ class InstagramService {
     if (!caption) return "";
 
     // Take the caption, remove hashtags, and limit length
-    const cleanCaption = caption
-      .replace(/#\w+/g, "") // Remove hashtags
-      .replace(/@\w+/g, "") // Remove mentions
-      .replace(/\n+/g, " ") // Replace newlines with spaces
-      .trim();
+    // const cleanCaption = caption
+    //   .replace(/#\w+/g, "") // Remove hashtags
+    //   .replace(/@\w+/g, "") // Remove mentions
+    //   .replace(/\n+/g, " ") // Replace newlines with spaces
+    //   .trim();
 
-    return cleanCaption.slice(0, 100);
+    // return cleanCaption.slice(0, 100);
+    return caption;
   }
 
   private generateViews(): string {

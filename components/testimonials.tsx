@@ -336,7 +336,7 @@ export function Testimonials() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.4 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-3xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-3 gap-8 mt-16 max-w-3xl mx-auto"
         >
           <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
             <h4
@@ -392,7 +392,7 @@ export function Testimonials() {
               Satisfaction
             </p>
           </div>
-          <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+          {/* <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
             <h4
               className="font-['Cinzel'] text-3xl font-semibold text-[#FFD700] mb-2"
               style={{
@@ -409,7 +409,7 @@ export function Testimonials() {
             >
               Awards Won
             </p>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>

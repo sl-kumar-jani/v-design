@@ -49,6 +49,7 @@ export function InstagramReels() {
       const data: ApiResponse = await response.json();
 
       if (data.success) {
+        console.log("data-==>>", data.data);
         setReelsData(data.data);
         setDataSource(data.source);
       } else {
@@ -193,7 +194,29 @@ export function InstagramReels() {
                   className="group cursor-pointer"
                   onClick={() => handleReelClick(reel)}
                 >
-                  <div className="relative aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl bg-black">
+                  <div className="relative aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl bg-black group-hover:shadow-2xl group-hover:shadow-[#FFD700]/20 transition-all duration-300">
+                    {/* Thumbnail Image - Shows when video is not playing */}
+                    <div
+                      className={`absolute inset-0 transition-opacity duration-300 ${
+                        playingVideo === reel.id ? "opacity-0" : "opacity-100"
+                      }`}
+                    >
+                      <img
+                        src={reel.thumbnail}
+                        alt={reel.title || "Instagram Reel"}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        onError={(e) => {
+                          // Fallback to placeholder if thumbnail fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.src = "/placeholder.svg?height=600&width=400";
+                        }}
+                      />
+                      {/* Thumbnail overlay for better text readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                    </div>
+
+                    {/* Video Element */}
                     <video
                       ref={(el) => {
                         if (el) {
@@ -201,15 +224,13 @@ export function InstagramReels() {
                           el.load();
                         }
                       }}
-                      className="w-full h-full object-cover"
+                      className={`w-full h-full object-cover transition-opacity duration-300 ${
+                        playingVideo === reel.id ? "opacity-100" : "opacity-0"
+                      }`}
                       loop
                       playsInline
                       muted={mutedVideos.has(reel.id)}
                       preload="metadata"
-                      // onLoadStart={() =>
-                      //   console.log(`Video ${reel.id} loading started`)
-                      // }
-                      // onCanPlay={() => console.log(`Video ${reel.id} can play`)}
                       onError={(e) => {
                         console.error(`Video ${reel.id} error:`, e);
                         console.error("Video source:", reel.videoUrl);
@@ -221,7 +242,7 @@ export function InstagramReels() {
                     </video>
 
                     {/* Overlay Controls */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20">
+                    <div className="absolute inset-0">
                       {/* Play/Pause Button */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <button
@@ -266,7 +287,7 @@ export function InstagramReels() {
                               handleMuteToggle(reel.id, video);
                             }
                           }}
-                          className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/50 transition-colors"
+                          className="w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
                         >
                           {mutedVideos.has(reel.id) ? (
                             <VolumeX className="w-5 h-5" />
@@ -277,14 +298,11 @@ export function InstagramReels() {
                       </div>
 
                       {/* Bottom Info */}
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        {/* <h3 className="font-['Playfair_Display'] text-white font-semibold text-sm mb-1 line-clamp-2">
-                        {reel.title}
-                      </h3> */}
-                        <p className="font-['Cinzel'] text-white/80 text-xs mb-2 line-clamp-2">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                        <p className="font-['Cinzel'] text-white/90 text-xs mb-2 line-clamp-2">
                           {reel.description}
                         </p>
-                        <div className="flex items-center justify-between text-white/70 text-xs">
+                        <div className="flex items-center justify-between text-white/80 text-xs">
                           {reel.comments && reel.comments !== "0" ? (
                             <span className="font-['Cinzel']">
                               {reel.comments} comment
@@ -359,7 +377,7 @@ export function InstagramReels() {
                 {selectedReel && (
                   <>
                     {/* Header */}
-                    <div className="flex items-center space-x-4 mb-6">
+                    <div className="flex items-center space-x-4 mb-6 flex-shrink-0">
                       <div className="w-12 h-12 rounded-full bg-[#365545] flex items-center justify-center">
                         <Instagram className="w-6 h-6 text-white" />
                       </div>
@@ -374,17 +392,19 @@ export function InstagramReels() {
                     </div>
 
                     {/* Description */}
-                    <div className="flex-1">
+                    <div className="flex-1 overflow-hidden">
                       {/* <h3 className="font-['Playfair_Display'] text-white font-semibold mb-2">
                       {selectedReel.title}
                     </h3> */}
-                      <p className="font-['Playfair_Display'] text-white/90 text-lg leading-relaxed">
-                        {selectedReel.description}
-                      </p>
+                      <div className="h-full overflow-y-auto overflow-x-hidden pr-2">
+                        <p className="font-['Playfair_Display'] text-white/90 text-lg leading-relaxed break-words">
+                          {selectedReel.description}
+                        </p>
+                      </div>
                     </div>
 
                     {/* Engagement Stats */}
-                    <div className="border-t border-[#365545] pt-4 mt-4">
+                    <div className="border-t border-[#365545] pt-4 mt-4 flex-shrink-0">
                       <div className="flex items-center justify-between text-white/80">
                         <div className="flex items-center space-x-6">
                           <div className="flex items-center space-x-2">
@@ -407,7 +427,7 @@ export function InstagramReels() {
                     </div>
 
                     {/* Posted Time */}
-                    <div className="mt-4">
+                    <div className="mt-4 flex-shrink-0">
                       <p className="font-['Cinzel'] text-sm text-white/40">
                         Posted{" "}
                         {selectedReel.timestamp

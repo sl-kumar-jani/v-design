@@ -88,7 +88,7 @@ export async function GET(request: Request) {
           // data: fallbackReels.slice(0, limit),
           data: [],
           source: "fallback",
-          message: "No Instagram reels found, using fallback data",
+          message: "No video reels found from Instagram, using fallback data",
         });
       }
 
@@ -107,7 +107,7 @@ export async function GET(request: Request) {
         // data: fallbackReels.slice(0, limit),
         data: [],
         source: "fallback",
-        message: "Instagram API unavailable, using fallback data",
+        message: "Instagram API unavailable, using fallback video reels",
         error:
           instagramError instanceof Error
             ? instagramError.message
