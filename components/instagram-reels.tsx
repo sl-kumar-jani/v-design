@@ -355,8 +355,8 @@ export function InstagramReels() {
           open={!!selectedReel}
           onOpenChange={() => setSelectedReel(null)}
         >
-          <DialogContent className="max-w-4xl w-full bg-[#1a1a1a] border-[#365545] p-0 overflow-hidden">
-            <div className="flex h-[80vh]">
+          <DialogContent className="max-w-3xl w-full bg-[#1a1a1a] border-[#365545] p-0 ">
+            <div className="flex h-[80vh] flex-col sm:flex-row overflow-y-auto overflow-x-hidden sm:overflow-hidden">
               {/* Video Section */}
               <div className="flex-1 relative bg-black">
                 {selectedReel && (

@@ -150,43 +150,43 @@ export function Contact() {
               transition={{ duration: 1, delay: 0.8 }}
               className="space-y-8"
             >
-              <div className="flex items-center space-x-4 bg-white/50 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-white/30">
-                <div className="w-12 h-12 rounded-full bg-[#365545] flex items-center justify-center">
+              <div className="flex items-start space-x-4 bg-white/50 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-white/30">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#365545] flex items-center justify-center">
                   <Mail className="w-5 h-5 text-white" />
                 </div>
-                <div>
-                  <h4 className="font-['Cinzel'] text-[#365545] font-semibold">
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-['Cinzel'] text-[#365545] font-semibold mb-1">
                     Email
                   </h4>
-                  <p className="font-['Playfair_Display'] text-gray-700">
+                  <p className="font-['Playfair_Display'] text-gray-700 text-sm sm:text-base">
                     virali.vdesign@gmail.com
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 bg-white/50 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-white/30">
-                <div className="w-12 h-12 rounded-full bg-[#365545] flex items-center justify-center">
+              <div className="flex items-start space-x-4 bg-white/50 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-white/30">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#365545] flex items-center justify-center">
                   <Phone className="w-5 h-5 text-white" />
                 </div>
-                <div>
-                  <h4 className="font-['Cinzel'] text-[#365545] font-semibold">
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-['Cinzel'] text-[#365545] font-semibold mb-1">
                     Phone
                   </h4>
-                  <p className="font-['Playfair_Display'] text-gray-700">
+                  <p className="font-['Playfair_Display'] text-gray-700 text-sm sm:text-base">
                     +91 97644 47006
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 bg-white/50 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-white/30">
-                <div className="w-12 h-12 rounded-full bg-[#365545] flex items-center justify-center">
+              <div className="flex items-start space-x-4 bg-white/50 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-white/30">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#365545] flex items-center justify-center">
                   <MapPin className="w-5 h-5 text-white" />
                 </div>
-                <div>
-                  <h4 className="font-['Cinzel'] text-[#365545] font-semibold">
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-['Cinzel'] text-[#365545] font-semibold mb-1">
                     Location
                   </h4>
-                  <p className="font-['Playfair_Display'] text-gray-700">
+                  <p className="font-['Playfair_Display'] text-gray-700 text-sm sm:text-base leading-relaxed">
                     101, Sugra Terrace Apartments, Lane Number 6, Kalyani Nagar,
                     Pune, Maharashtra 411006
                   </p>
@@ -198,7 +198,7 @@ export function Contact() {
                   Office Hours
                 </h4>
                 <div className="space-y-2 font-['Playfair_Display'] text-gray-700">
-                  <p>Monday - Friday: 10:00 AM to 6:00 PM</p>
+                  <p>Monday - Friday: 10:00 am to 6:00 PM</p>
                   <p>Saturday: 10:00 AM - 4:00 PM</p>
                   <p>Sunday: By Appointment</p>
                 </div>

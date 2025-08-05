@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -29,11 +27,61 @@ export function Navigation() {
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
+
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      // Close mobile menu first
+      setIsMobileMenuOpen(false);
+
+      // Add a small delay to allow menu to close, then scroll
+      setTimeout(() => {
+        // Get the navbar height to offset the scroll position
+        const navHeight = 80; // Height of your navbar (h-20 = 80px)
+        const elementPosition =
+          element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }, 100);
+    } else {
+      // If element not found, still close mobile menu
+      setIsMobileMenuOpen(false);
     }
-    setIsMobileMenuOpen(false);
   };
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const nav = document.querySelector("nav");
+      if (nav && !nav.contains(event.target as Node) && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup function to restore scroll when component unmounts
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <motion.nav
@@ -86,7 +134,8 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-white p-2"
+            className="lg:hidden text-white p-2 z-10 relative"
+            aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />

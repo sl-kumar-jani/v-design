@@ -91,7 +91,7 @@ export function About() {
     <section
       id="about"
       ref={ref}
-      className="py-20 relative overflow-hidden bg-[#f8f8f8]"
+      className="py-8 sm:py-12 md:py-16 lg:py-20 relative overflow-hidden bg-[#f8f8f8]"
       role="region"
       aria-labelledby="about-heading"
     >
@@ -104,8 +104,6 @@ export function About() {
           className="object-cover"
           priority
         />
-        {/* <div className="absolute inset-0 bg-white/10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/25 via-white/15 to-white/10" /> */}
         <div className="absolute inset-0 bg-white/10" />
         <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-white/20 to-white/40" />
       </div>
@@ -113,14 +111,14 @@ export function About() {
       {/* Background Gradient Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#365545]/10 to-transparent z-10" />
 
-      <div className="container mx-auto px-6 relative z-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="container mx-auto px-4 sm:px-6 relative z-20">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left Text Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
             {/* Heading */}
             <div>
@@ -129,7 +127,7 @@ export function About() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 1, delay: 0.2 }}
-                className="font-['Cormorant_Garamond'] text-5xl md:text-6xl font-semibold  text-[#365545] mb-4"
+                className="font-['Cormorant_Garamond'] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-[#365545] mb-3 sm:mb-4 leading-tight"
                 style={{
                   textShadow:
                     "0 2px 8px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.6)",
@@ -150,7 +148,7 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.6 }}
-              className="font-['Playfair_Display'] text-3xl md:text-4xl text-[#365545] font-medium"
+              className="font-['Playfair_Display'] text-2xl sm:text-3xl md:text-4xl text-[#365545] font-medium leading-tight"
               style={{
                 textShadow:
                   "0 2px 6px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.6)",
@@ -164,17 +162,17 @@ export function About() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 1, delay: 1.2 }}
-              className="flex items-center space-x-4 mt-6"
+              className="flex items-center space-x-3 sm:space-x-4 mt-4 sm:mt-6"
             >
               <Image
                 src="/images/v-design-logo.png"
                 alt="V Design Logo"
                 width={50}
                 height={50}
-                className="w-12 h-12 object-contain opacity-90 drop-shadow-md"
+                className="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 drop-shadow-md"
               />
               <span
-                className="font-['Cinzel'] text-[#FFD700] text-lg md:text-xl tracking-[0.2em] uppercase font-extrabold drop-shadow-md"
+                className="font-['Cinzel'] text-[#FFD700] text-sm sm:text-lg md:text-xl tracking-[0.1em] sm:tracking-[0.2em] uppercase font-extrabold drop-shadow-md leading-tight"
                 style={{
                   textShadow:
                     "0 2px 8px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 215, 0, 0.7)",
@@ -189,18 +187,18 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.8 }}
-              className="space-y-6"
+              className="space-y-4 sm:space-y-6"
             >
               {/* First Card */}
-              <div className="bg-white/50 backdrop-blur-sm rounded-lg p-8 shadow-lg border border-white/30">
-                <p className="font-['Playfair_Display'] text-lg leading-relaxed text-[#365545] drop-shadow-md">
+              <div className="bg-white/50 backdrop-blur-sm rounded-lg p-4 sm:p-6 md:p-8 shadow-lg border border-white/30">
+                <p className="font-['Playfair_Display'] text-base sm:text-lg leading-relaxed text-[#365545] drop-shadow-md">
                   {displayData.founderDescription}
                 </p>
               </div>
 
               {/* Second Card */}
-              <div className="bg-white/50 backdrop-blur-sm rounded-lg p-8 shadow-lg border border-white/30">
-                <p className="font-['Playfair_Display'] text-lg leading-relaxed text-[#365545] drop-shadow-md">
+              <div className="bg-white/50 backdrop-blur-sm rounded-lg p-4 sm:p-6 md:p-8 shadow-lg border border-white/30">
+                <p className="font-['Playfair_Display'] text-base sm:text-lg leading-relaxed text-[#365545] drop-shadow-md">
                   From concept to completion, V Design ensures that every
                   element contributes to a cohesive and harmonious living
                   experience,
@@ -217,9 +215,9 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 1 }}
-              className="pt-6"
+              className="pt-4 sm:pt-6"
             >
-              <div className="grid grid-cols-3 gap-6 text-center">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center">
                 {[
                   {
                     value: displayData.projectsCompleted,
@@ -239,10 +237,10 @@ export function About() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="bg-white/80 backdrop-blur-md rounded-lg p-4 shadow-xl border border-white/40"
+                    className="bg-white/80 backdrop-blur-md rounded-lg p-3 sm:p-4 shadow-xl border border-white/40"
                   >
                     <h4
-                      className="font-['Cinzel'] text-2xl font-semibold text-[#FFD700] mb-1"
+                      className="font-['Cinzel'] text-xl sm:text-2xl font-semibold text-[#FFD700] mb-1 leading-tight"
                       style={{
                         textShadow:
                           "0 1px 3px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255,215,0,0.4)",
@@ -254,7 +252,7 @@ export function About() {
                         suffix={item.suffix}
                       />
                     </h4>
-                    <p className="font-['Playfair_Display'] text-sm text-gray-700 uppercase tracking-wide font-medium">
+                    <p className="font-['Playfair_Display'] text-xs sm:text-sm text-gray-700 uppercase tracking-wide font-medium leading-tight">
                       {item.label}
                     </p>
                   </div>
@@ -268,9 +266,9 @@ export function About() {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.4 }}
-            className="relative"
+            className="relative order-first lg:order-last"
           >
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-white/40 backdrop-blur-sm border border-white/60">
+            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-white/40 backdrop-blur-sm border border-white/60 max-w-sm mx-auto lg:max-w-none">
               <Image
                 src={displayData.founderPhotoUrl}
                 alt={displayData.founderName}
@@ -281,8 +279,8 @@ export function About() {
             </div>
 
             {/* Decorative Rings */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 border-2 border-[#FFD700] rounded-full opacity-60 shadow-lg" />
-            <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-[#FFD700] rounded-full opacity-50 shadow-lg" />
+            <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-16 h-16 sm:w-24 sm:h-24 border-2 border-[#FFD700] rounded-full opacity-60 shadow-lg" />
+            <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 bg-[#FFD700] rounded-full opacity-50 shadow-lg" />
           </motion.div>
         </div>
       </div>
